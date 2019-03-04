@@ -20,6 +20,7 @@
 		64B0109B222931030093B80E /* QuestionHelps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B0109A222931030093B80E /* QuestionHelps.swift */; };
 		64B0109F222952540093B80E /* RecordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B0109E222952540093B80E /* RecordsViewController.swift */; };
 		64B010A122295E820093B80E /* bdCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B010A022295E820093B80E /* bdCreator.swift */; };
+		64B010A4222D3A570093B80E /* extensionInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B010A3222D3A570093B80E /* extensionInt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		64B0109A222931030093B80E /* QuestionHelps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionHelps.swift; sourceTree = "<group>"; };
 		64B0109E222952540093B80E /* RecordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsViewController.swift; sourceTree = "<group>"; };
 		64B010A022295E820093B80E /* bdCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bdCreator.swift; sourceTree = "<group>"; };
+		64B010A3222D3A570093B80E /* extensionInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionInt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 		64B0107D2229218A0093B80E /* MillionaireDA */ = {
 			isa = PBXGroup;
 			children = (
+				64B010A2222D3A450093B80E /* extension */,
 				64B0109D222936EA0093B80E /* controller */,
 				64B0109C222936C70093B80E /* model */,
 				64B0107E2229218A0093B80E /* AppDelegate.swift */,
@@ -102,6 +105,14 @@
 				64B010A022295E820093B80E /* bdCreator.swift */,
 			);
 			path = controller;
+			sourceTree = "<group>";
+		};
+		64B010A2222D3A450093B80E /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				64B010A3222D3A570093B80E /* extensionInt.swift */,
+			);
+			path = extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,6 +191,7 @@
 				64B010A122295E820093B80E /* bdCreator.swift in Sources */,
 				64B0109B222931030093B80E /* QuestionHelps.swift in Sources */,
 				64B0109F222952540093B80E /* RecordsViewController.swift in Sources */,
+				64B010A4222D3A570093B80E /* extensionInt.swift in Sources */,
 				64B010912229220C0093B80E /* GameViewController.swift in Sources */,
 				64B0109722292CB60093B80E /* Question.swift in Sources */,
 				64B0109322292C770093B80E /* GameSession.swift in Sources */,

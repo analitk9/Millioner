@@ -57,20 +57,18 @@ class GameViewController: UIViewController {
         if sender.tag != gameSession.questionArr[actualQ].currectAnswer {
             didEndGame()
         }else {
-            
             gameSession.totalCorrectAnswer += 1
             gameSession.currentQuestion += 1
             showQuestion()
         }
-        
     }
     
     @IBAction func pressed50(_ sender: UIButton) {
         guard let image = UIImage(named: "50Selected") else {return}
         sender.setImage(image, for: .normal)
         
-        let visibleQuestion = randomFor(type: .half)
-        for index in visibleQuestion{
+        let visibleAnswer = Int().randomFor(type: .half)
+        for index in visibleAnswer{
             switch index {
             case 0:
                 answer0Button.alpha = 0.0
@@ -83,16 +81,15 @@ class GameViewController: UIViewController {
             default:
                 print("странное число \(index)")
             }
-            
         }
+         sender.isEnabled = false
          Game.shared.gameSession?.helps.halfWrong = false
-        
     }
     
     @IBAction func pressedAuditorium(_ sender: UIButton) {
         guard let image = UIImage(named: "auditoriumSelected") else {return}
         sender.setImage(image, for: .normal)
-         let auditoriumQuestion = randomFor(type: .auditorium)
+         let auditoriumQuestion = Int().randomFor(type: .auditorium)
         let actionSheet = UIAlertController(title: "Мнение зала",
                                             message: "", preferredStyle: .alert)
         for index in 0...3 {
@@ -100,80 +97,32 @@ class GameViewController: UIViewController {
                 textField.text = "\(auditoriumQuestion[index])% за \(index + 1) ответ"
             }
         }
-        
-        
+
         let cancelAction = UIAlertAction(title: "Ок", style: .default, handler: nil)
         actionSheet.addAction(cancelAction)
-        
-        
-        
+
         self.present(actionSheet, animated: true, completion: nil)
-        
-        
-        
-        
+        sender.isEnabled = false
         Game.shared.gameSession?.helps.auditorium = false
-        
-        
+  
     }
     
     @IBAction func pressedCall(_ sender: UIButton) {
         guard let image = UIImage(named: "callSelected") else {return}
         sender.setImage(image, for: .normal)
-         let callQuestion = randomFor(type: .call)
+         let callQuestion = Int().randomFor(type: .call)
         
         let actionSheet = UIAlertController(title: "Ответ воображаемого друга",
                                             message: "Я считаю что правильный ответ №\(callQuestion[0]+1)", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Ок", style: .default, handler: nil)
         actionSheet.addAction(cancelAction)
-        
-       
-        
+ 
         self.present(actionSheet, animated: true, completion: nil)
-        
+        sender.isEnabled = false
          Game.shared.gameSession?.helps.callFriend = false
-        
-        
+       
     }
-    
-    func randomFor(type: typeOfHelp)->[Int]{
-        var result: [Int] = []
-        var arr = [0,1,2,3]
-        
-        if let currentQ = Game.shared.gameSession?.currentQuestion,
-            let currentAnswer = Game.shared.gameSession?.questionArr[currentQ].currectAnswer{
-            
-            switch type {
-            case .auditorium:
-                var tempArr = [0,0,0,0]
-                for _ in  (0...1000) {
-                    tempArr[Int.random(in: 0...3)] += 1
-                    result = returnRatio(arr: tempArr, count: 1000)
-                }
-            case .call:
-               result.append(Int.random(in: 0...3))
-            case .half:
-               arr.remove(at: currentAnswer)
-                var randomindex = Int.random(in: 0...2)
-                result.append(arr[randomindex])
-                arr.remove(at: randomindex)
-                randomindex = Int.random(in: 0...1)
-               result.append(arr[randomindex])
-  
-            }
-        }
-        return result
-    }
-    func returnRatio(arr:[Int], count: Int)->[Int]{
-        var result:[Int] = []
-        for index in arr {
-            let ratio = index * 100 / count
-            result.append(ratio)
-        }
-        return result
-        
-    }
-    
+ 
     func createGame(){
         
         Game.shared.gameSession = GameSession(bdCreator().createQuestions())
@@ -189,13 +138,9 @@ class GameViewController: UIViewController {
             let auditoriumImage = selectImagefor(button: .auditorium, for: stateAuditorium ? .on : .off ){
             
             halfButton.setImage(halfImage, for: .normal)
-            halfButton.isEnabled = stateHalf
-            
             auditoriumButton.setImage(auditoriumImage, for: .normal)
-            auditoriumButton.isEnabled = stateAuditorium
-            
             callButton.setImage(callImage, for: .normal)
-            callButton.isEnabled = stateCall
+
             
         }
         
