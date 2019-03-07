@@ -9,8 +9,8 @@
 import Foundation
 
 final class GameSession {
-    var totalCorrectAnswer: Int = 0
-    var currentQuestion:Int = 0
+    var totalCorrectAnswer  = Observable<Int>(0)
+    var currentQuestion = Observable<Int>(0)
     var questionArr: [Question]
     var helps: QuestionHelps
     

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64250B2D222E5B7C00ABA9E9 /* setting ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64250B2C222E5B7C00ABA9E9 /* setting ViewController.swift */; };
+		64250B30222E5EF200ABA9E9 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64250B2F222E5EF200ABA9E9 /* Observable.swift */; };
+		64250B32222E87CE00ABA9E9 /* addQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64250B31222E87CE00ABA9E9 /* addQuestionViewController.swift */; };
+		64250B34222E882500ABA9E9 /* questionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64250B33222E882500ABA9E9 /* questionTableViewCell.swift */; };
 		64B0107F2229218A0093B80E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B0107E2229218A0093B80E /* AppDelegate.swift */; };
 		64B010812229218A0093B80E /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B010802229218A0093B80E /* MainMenuViewController.swift */; };
 		64B010842229218A0093B80E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B010822229218A0093B80E /* Main.storyboard */; };
@@ -21,9 +25,16 @@
 		64B0109F222952540093B80E /* RecordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B0109E222952540093B80E /* RecordsViewController.swift */; };
 		64B010A122295E820093B80E /* bdCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B010A022295E820093B80E /* bdCreator.swift */; };
 		64B010A4222D3A570093B80E /* extensionInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B010A3222D3A570093B80E /* extensionInt.swift */; };
+		64F9EA13222FB5150052DE98 /* QuestionCaretaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F9EA12222FB5150052DE98 /* QuestionCaretaker.swift */; };
+		64F9EA16222FBEB50052DE98 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F9EA15222FBEB50052DE98 /* Builder.swift */; };
+		64F9EA19223007250052DE98 /* HelpsFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F9EA18223007250052DE98 /* HelpsFacade.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		64250B2C222E5B7C00ABA9E9 /* setting ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "setting ViewController.swift"; sourceTree = "<group>"; };
+		64250B2F222E5EF200ABA9E9 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		64250B31222E87CE00ABA9E9 /* addQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addQuestionViewController.swift; sourceTree = "<group>"; };
+		64250B33222E882500ABA9E9 /* questionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = questionTableViewCell.swift; sourceTree = "<group>"; };
 		64B0107B2229218A0093B80E /* MillionaireDA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MillionaireDA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B0107E2229218A0093B80E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64B010802229218A0093B80E /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +51,9 @@
 		64B0109E222952540093B80E /* RecordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsViewController.swift; sourceTree = "<group>"; };
 		64B010A022295E820093B80E /* bdCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bdCreator.swift; sourceTree = "<group>"; };
 		64B010A3222D3A570093B80E /* extensionInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionInt.swift; sourceTree = "<group>"; };
+		64F9EA12222FB5150052DE98 /* QuestionCaretaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCaretaker.swift; sourceTree = "<group>"; };
+		64F9EA15222FBEB50052DE98 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		64F9EA18223007250052DE98 /* HelpsFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpsFacade.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +67,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		64250B2E222E5EBA00ABA9E9 /* Observable */ = {
+			isa = PBXGroup;
+			children = (
+				64250B2F222E5EF200ABA9E9 /* Observable.swift */,
+			);
+			path = Observable;
+			sourceTree = "<group>";
+		};
 		64B010722229218A0093B80E = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +94,10 @@
 		64B0107D2229218A0093B80E /* MillionaireDA */ = {
 			isa = PBXGroup;
 			children = (
+				64F9EA17223006FF0052DE98 /* Facade */,
+				64F9EA14222FBE970052DE98 /* Builder */,
+				64F9EA11222FB4F90052DE98 /* Caretaker */,
+				64250B2E222E5EBA00ABA9E9 /* Observable */,
 				64B010A2222D3A450093B80E /* extension */,
 				64B0109D222936EA0093B80E /* controller */,
 				64B0109C222936C70093B80E /* model */,
@@ -87,11 +113,11 @@
 		64B0109C222936C70093B80E /* model */ = {
 			isa = PBXGroup;
 			children = (
+				64B010A022295E820093B80E /* bdCreator.swift */,
 				64B0109222292C770093B80E /* GameSession.swift */,
 				64B0109422292C820093B80E /* Game.swift */,
 				64B0109622292CB60093B80E /* Question.swift */,
 				64B0109A222931030093B80E /* QuestionHelps.swift */,
-				64B0109822292D460093B80E /* RecordCaretaker.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -101,8 +127,10 @@
 			children = (
 				64B010802229218A0093B80E /* MainMenuViewController.swift */,
 				64B010902229220C0093B80E /* GameViewController.swift */,
+				64250B33222E882500ABA9E9 /* questionTableViewCell.swift */,
+				64250B2C222E5B7C00ABA9E9 /* setting ViewController.swift */,
+				64250B31222E87CE00ABA9E9 /* addQuestionViewController.swift */,
 				64B0109E222952540093B80E /* RecordsViewController.swift */,
-				64B010A022295E820093B80E /* bdCreator.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -113,6 +141,31 @@
 				64B010A3222D3A570093B80E /* extensionInt.swift */,
 			);
 			path = extension;
+			sourceTree = "<group>";
+		};
+		64F9EA11222FB4F90052DE98 /* Caretaker */ = {
+			isa = PBXGroup;
+			children = (
+				64B0109822292D460093B80E /* RecordCaretaker.swift */,
+				64F9EA12222FB5150052DE98 /* QuestionCaretaker.swift */,
+			);
+			path = Caretaker;
+			sourceTree = "<group>";
+		};
+		64F9EA14222FBE970052DE98 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				64F9EA15222FBEB50052DE98 /* Builder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		64F9EA17223006FF0052DE98 /* Facade */ = {
+			isa = PBXGroup;
+			children = (
+				64F9EA18223007250052DE98 /* HelpsFacade.swift */,
+			);
+			path = Facade;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,14 +239,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64250B30222E5EF200ABA9E9 /* Observable.swift in Sources */,
 				64B010812229218A0093B80E /* MainMenuViewController.swift in Sources */,
+				64250B34222E882500ABA9E9 /* questionTableViewCell.swift in Sources */,
 				64B0109522292C820093B80E /* Game.swift in Sources */,
+				64F9EA19223007250052DE98 /* HelpsFacade.swift in Sources */,
 				64B010A122295E820093B80E /* bdCreator.swift in Sources */,
 				64B0109B222931030093B80E /* QuestionHelps.swift in Sources */,
+				64250B2D222E5B7C00ABA9E9 /* setting ViewController.swift in Sources */,
+				64F9EA16222FBEB50052DE98 /* Builder.swift in Sources */,
 				64B0109F222952540093B80E /* RecordsViewController.swift in Sources */,
 				64B010A4222D3A570093B80E /* extensionInt.swift in Sources */,
+				64250B32222E87CE00ABA9E9 /* addQuestionViewController.swift in Sources */,
 				64B010912229220C0093B80E /* GameViewController.swift in Sources */,
 				64B0109722292CB60093B80E /* Question.swift in Sources */,
+				64F9EA13222FB5150052DE98 /* QuestionCaretaker.swift in Sources */,
 				64B0109322292C770093B80E /* GameSession.swift in Sources */,
 				64B0107F2229218A0093B80E /* AppDelegate.swift in Sources */,
 				64B0109922292D460093B80E /* RecordCaretaker.swift in Sources */,

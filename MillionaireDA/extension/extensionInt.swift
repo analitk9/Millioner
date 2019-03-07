@@ -13,7 +13,7 @@ extension Int {
         var result: [Int] = []
         var arr = [0,1,2,3]
         
-        if let currentQ = Game.shared.gameSession?.currentQuestion,
+        if let currentQ = Game.shared.gameSession?.currentQuestion.value,
             let currentAnswer = Game.shared.gameSession?.questionArr[currentQ].currectAnswer{
             
             switch type {

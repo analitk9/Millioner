@@ -40,25 +40,47 @@ class GameViewController: UIViewController {
     
     @IBOutlet weak var callButton: UIButton!
     
+    @IBOutlet weak var infoLabel: UILabel!
+    
+    
     var onEndGame: ((Int)-> Void)?
+  lazy var heldsFacade: HelpsFacade = {
+        return HelpsFacade.init(gameSession: Game.shared.gameSession!)
+    }()
+    var totatInfoStateGame: String = "" {
+        didSet {
+           infoLabel.text = totatInfoStateGame
+        }
+        
+    }
+    var infoCurrentQ: Int = 0 {
+        didSet {
+            totatInfoStateGame = "\(infoCurrentQ+1) вопрос. Отвечено на \(countScore())%"
+        }
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         createGame()
         showQuestion()
+        Game.shared.gameSession?.currentQuestion.addObserver(self, removeIfExists: true, options: [.new, .initial], closure: { [weak self] (currentQuestion, _) in
+                self?.infoCurrentQ = currentQuestion
+
+        })
     }
     
     
     @IBAction func choiceAnswer(_ sender: UIButton) {
         guard let  gameSession = Game.shared.gameSession else {return}
         
-        let actualQ = gameSession.currentQuestion
+        let actualQ = gameSession.currentQuestion.value
         
         if sender.tag != gameSession.questionArr[actualQ].currectAnswer {
             didEndGame()
         }else {
-            gameSession.totalCorrectAnswer += 1
-            gameSession.currentQuestion += 1
+            gameSession.totalCorrectAnswer.value += 1
+            gameSession.currentQuestion.value += 1
             showQuestion()
         }
     }
@@ -66,8 +88,10 @@ class GameViewController: UIViewController {
     @IBAction func pressed50(_ sender: UIButton) {
         guard let image = UIImage(named: "50Selected") else {return}
         sender.setImage(image, for: .normal)
+        Game.shared.gameSession?.helps.halfWrong = false
+        sender.isEnabled = false
         
-        let visibleAnswer = Int().randomFor(type: .half)
+        let visibleAnswer = heldsFacade.use50to50Hint()
         for index in visibleAnswer{
             switch index {
             case 0:
@@ -82,50 +106,29 @@ class GameViewController: UIViewController {
                 print("странное число \(index)")
             }
         }
-         sender.isEnabled = false
-         Game.shared.gameSession?.helps.halfWrong = false
     }
     
     @IBAction func pressedAuditorium(_ sender: UIButton) {
         guard let image = UIImage(named: "auditoriumSelected") else {return}
         sender.setImage(image, for: .normal)
-         let auditoriumQuestion = Int().randomFor(type: .auditorium)
-        let actionSheet = UIAlertController(title: "Мнение зала",
-                                            message: "", preferredStyle: .alert)
-        for index in 0...3 {
-            actionSheet.addTextField { textField in
-                textField.text = "\(auditoriumQuestion[index])% за \(index + 1) ответ"
-            }
-        }
-
-        let cancelAction = UIAlertAction(title: "Ок", style: .default, handler: nil)
-        actionSheet.addAction(cancelAction)
-
-        self.present(actionSheet, animated: true, completion: nil)
         sender.isEnabled = false
         Game.shared.gameSession?.helps.auditorium = false
-  
+        
+        self.present(heldsFacade.useAuditoryHelp(), animated: true, completion: nil)
     }
     
     @IBAction func pressedCall(_ sender: UIButton) {
         guard let image = UIImage(named: "callSelected") else {return}
         sender.setImage(image, for: .normal)
-         let callQuestion = Int().randomFor(type: .call)
-        
-        let actionSheet = UIAlertController(title: "Ответ воображаемого друга",
-                                            message: "Я считаю что правильный ответ №\(callQuestion[0]+1)", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Ок", style: .default, handler: nil)
-        actionSheet.addAction(cancelAction)
- 
-        self.present(actionSheet, animated: true, completion: nil)
         sender.isEnabled = false
-         Game.shared.gameSession?.helps.callFriend = false
-       
+        Game.shared.gameSession?.helps.callFriend = false
+ 
+        self.present(heldsFacade.callFriend(), animated: true, completion: nil)
     }
  
     func createGame(){
         
-        Game.shared.gameSession = GameSession(bdCreator().createQuestions())
+        Game.shared.gameSession = GameSession(bdCreator().createQuestions())        
         updateUI(gameSession: Game.shared.gameSession!)
     }
     
@@ -140,8 +143,6 @@ class GameViewController: UIViewController {
             halfButton.setImage(halfImage, for: .normal)
             auditoriumButton.setImage(auditoriumImage, for: .normal)
             callButton.setImage(callImage, for: .normal)
-
-            
         }
         
         answer0Button.alpha = 1.0
@@ -166,18 +167,21 @@ class GameViewController: UIViewController {
     
     func showQuestion(){
         guard let  gameSession = Game.shared.gameSession else {return}
-        let actualQ = gameSession.currentQuestion
-        questionLabel.text = gameSession.questionArr[actualQ].question
-        answer0Button.setTitle("\(gameSession.questionArr[actualQ].answerArry[answer0Button.tag])", for: .normal)
-        answer1Button.setTitle("\(gameSession.questionArr[actualQ].answerArry[answer1Button.tag])", for: .normal)
-        answer2Button.setTitle("\(gameSession.questionArr[actualQ].answerArry[answer2Button.tag])", for: .normal)
-        answer3Button.setTitle("\(gameSession.questionArr[actualQ].answerArry[answer3Button.tag])", for: .normal)
-        updateUI(gameSession: gameSession)
+        let actualQ = gameSession.currentQuestion.value
+        if gameSession.questionArr.count != actualQ {
+            questionLabel.text = gameSession.questionArr[actualQ].question
+            answer0Button.setTitle("\(gameSession.questionArr[actualQ].answerArry[answer0Button.tag])", for: .normal)
+            answer1Button.setTitle("\(gameSession.questionArr[actualQ].answerArry[answer1Button.tag])", for: .normal)
+            answer2Button.setTitle("\(gameSession.questionArr[actualQ].answerArry[answer2Button.tag])", for: .normal)
+            answer3Button.setTitle("\(gameSession.questionArr[actualQ].answerArry[answer3Button.tag])", for: .normal)
+            updateUI(gameSession: gameSession)
+        } else {
+            didEndGame()
+        }
     }
     
     func didEndGame(){
-       
-        
+
         let record = Record(date: Date(), score: countScore())
         Game.shared.addRecord(record)
         
@@ -187,7 +191,7 @@ class GameViewController: UIViewController {
     
     func countScore()->Int{
         guard let  gameSession = Game.shared.gameSession else {return 0}
-        let  actualQ = gameSession.currentQuestion
+        let  actualQ = gameSession.currentQuestion.value
         let totalQ = gameSession.questionArr.count
         
         return Int((Float(actualQ) / Float(totalQ)) * 100.00)

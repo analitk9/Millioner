@@ -1,35 +1,35 @@
 //
-//  RecordCaretaker.swift
+//  QuestionCaretaker.swift
 //  MillionaireDA
 //
-//  Created by Denis Evdokimov on 01/03/2019.
+//  Created by Denis Evdokimov on 06/03/2019.
 //  Copyright © 2019 Denis Evdokimov. All rights reserved.
 //
 
 import Foundation
-
-final class RecordsCaretaker {
+final class QuestionCaretaker {
     
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
     
-    private let key = "records"
+    private let key = "quiestion"
     
-    func save(records: [Record]) {
+    
+    func save(questions: [Question]) {
         do {
-            let data = try self.encoder.encode(records)
+            let data = try self.encoder.encode(questions)
             UserDefaults.standard.set(data, forKey: key)
         } catch {
             print(error)
         }
     }
     
-    func retrieveRecords() -> [Record] {
+    func retrieveQuestions() -> [Question] {
         guard let data = UserDefaults.standard.data(forKey: key) else {
             return []
         }
         do {
-            return try self.decoder.decode([Record].self, from: data)
+            return try self.decoder.decode([Question].self, from: data)
         } catch {
             print(error)
             return []

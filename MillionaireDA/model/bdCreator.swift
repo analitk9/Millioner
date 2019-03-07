@@ -33,7 +33,7 @@ struct bdCreator {
                                answerArry: ["на кладбищах",
                                             "в больницах",
                                             "в библиотеках",
-                                            "в тюрьмах"], currectAnswer: 3)
+                                            "в тюрьмах"], currectAnswer: 2)
         let q6 = Question.init(question: "Что такое лобогрейка?",
                                answerArry: ["жнейка",
                                             "шапка",
@@ -50,7 +50,20 @@ struct bdCreator {
                                             "замесить тесто",
                                             "оседлать лошадь"], currectAnswer: 2)
         
+        var result: [Question] = []
         
-      return [q1,q2,q3,q4,q5,q6,q7,q8]
+        switch Game.shared.sourceOfQuestion {
+        case 0:
+           result = [q1,q2,q3,q4,q5,q6,q7,q8]
+         case 1:
+            result = Game.shared.customQuestions
+        case 2:
+            result = Game.shared.customQuestions + [q1,q2,q3,q4,q5,q6,q7,q8]
+        default:
+            result = [q1,q2,q3,q4,q5,q6,q7,q8]
+        }
+        
+        
+        return Game.shared.isRandomQuestion ? result.shuffled() :result
     }
 }
